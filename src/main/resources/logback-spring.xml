@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- 로그를 어떻게, 어디에, 어떤 형식으로 남길지 설정을 담당하는 xml파일 -->
+	<!-- 파일 경로, 형식, 어떤 로그를 저장할지, 어디로 출력할지, 출력포맷 등 지정가능-->
+    <!-- logback.xml은 기본logback 동작만 따르기 때문에 logback-spring.xml(Spring프로퍼티와 연동 가능) 더 강력-->
+    <!-- 로그를 저장할 파일 경로 -->
+    <appender name="LOGIN_FILE" class="ch.qos.logback.core.FileAppender">
+        <file>logs/login.log</file> <!-- 프로젝트 루트/logs/login.log 에 저장 -->
+        
+        <!-- 로그를 JSON 형식으로 인코딩 -->
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp/>
+                <loggerName/>
+                <threadName/>
+                <logLevel/>
+                <pattern>
+                    <pattern>
+                        {
+                          "message": "%message"
+                        }
+                    </pattern>
+                </pattern>
+            </providers>
+        </encoder>
+    </appender>
+
+    <!-- 루트 로거에 JSON 파일 로그를 적용 -->
+    <root level="INFO">
+        <appender-ref ref="LOGIN_FILE"/>
+    </root>
+</configuration>
