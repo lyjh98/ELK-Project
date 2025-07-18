@@ -275,22 +275,51 @@ output {
 ---
 
 ## 🛠 트러블슈팅 모음
+<details> <summary>✅ JMeter CSV 첫 열 읽음 여부</summary>
+CSV 첫 열이 컬럼값으로, JMeter가 읽는 데이터에서는 빠졌어야 했는데 읽음
 
-### ✅ CSV boolean 파싱 오류
-- `"True"` / `"False"` 대문자 값이 DB에서 boolean 인식 실패  
-- → `"1"` / `"0"`으로 변환하여 해결 (사전 전처리 or SQL SET 구문 사용)
+ignore first line 옵션을 True로 설정하여 csv파일 컬럼명을 무시하고 읽음
 
-### ✅ JMeter 실행 시간 부족
-- Duration 설정이 짧아 일부 트래픽만 전송됨  
-- → Duration/Loop Count 충분히 증가시켜 전체 데이터 반영되도록 수정
+<img width="1084" height="318" alt="image" src="https://github.com/user-attachments/assets/689ebe7a-4d4e-4c2d-91cc-0e5c87bf9ef3" /> </details> <details> <summary>✅ CSV boolean 파싱 오류</summary>
+"True" / "False" 대문자 값이 DB에서 boolean 매핑 실패
 
-### ✅ Logstash 경로 설정 이슈
-- 팀원 간 로그 파일 경로가 달라 실행 오류 발생  
-- → 공통 경로 통일 및 `.conf` 파일 내 주석으로 주의사항 명시
+→ "1" / "0"으로 변환하여 해결 (사전 전처리 or SQL SET 구문 사용)
 
-### ✅ Elasticsearch 인덱스 중복 문제
-- 기존 인덱스가 남아있어 로그 재수집 안 됨  
-- → `sincedb_path => "NUL"` 설정 or 로그 파일명 변경 or 인덱스 삭제로 해결
+</details> <details> <summary>✅ JMeter 실행 시간 부족</summary>
+Duration 설정이 짧아 일부 트래픽만 전송됨
+
+특히 Thread Group > Duration, Scheduler, Ramp-Up 설정이 짧으면
+전체 부하가 걸리기 전에 테스트 종료됨
+
+→ Thread Group 설정에서 Duration 10초 → 20초 이상으로 설정
+
+<img width="1091" height="551" alt="image" src="https://github.com/user-attachments/assets/51d802fc-536d-4d10-8ebf-b8c082c3ef1f" />
+생성된 로그 라인수 확인 명령어
+
+bash
+복사
+편집
+wc -l login.log
+</details> <details> <summary>✅ Logstash 경로 설정 이슈</summary>
+팀원 간 로그 파일 경로가 달라 실행 오류 발생
+
+Logstash는 지정된 로컬 절대 경로에서 로그를 찾기 때문에
+경로가 다르면 수집 자체가 되지 않음
+
+No such file or directory 오류 발생
+
+→ 공통 경로 통일 및 .conf 파일 내 주석으로 주의사항 명시
+
+</details> <details open> <summary>✅ Elasticsearch 인덱스 중복 문제</summary>
+로그 파일 수정 또는 재테스트 후 동일한 로그 파일을 다시 Logstash로 넘기려 했으나
+Elasticsearch에 기존 인덱스가 존재해 새 데이터가 적재되지 않음
+
+로그 파일 경로와 내용은 동일하지만 이전에 처리된 상태로 인식됨
+
+Filebeat나 Logstash는 한 번 처리한 파일을 내부 상태(sincedb 등)에 기록
+→ 동일 경로/내용의 파일은 변경되지 않은 것으로 판단하고 무시함
+
+Elasticsearch 인덱스가 이미 존재하면 문서 ID 중복 또는 파싱 실패로 skip
 
 ---
 
@@ -322,7 +351,10 @@ output {
 - (작성 예정)
 
 ### 👤 이제현
-- (작성 예정)
+- 데이터 시각화 프로젝트에 처음 도전했지만, 시나리오 기반으로 단계별 구현하며 실전 감각을 익히는 경험이었습니다. <br>
+  JMeter를 활용해 JSON 형식으로 데이터를 변환하여 로그를 기록하며, Spring 기반 시스템의 흐름을 이해하는 데 집중했습니다. <br>
+  기술 스택을 중심으로 데이터 처리 및 로깅 흐름을 체험하며, 실무에서 활용 가능한 개발 역량을 쌓을 수 있었습니다.
+
 
 ### 👤 전수민
 - (작성 예정)
