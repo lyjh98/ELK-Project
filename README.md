@@ -283,7 +283,7 @@ ignore first line 옵션을 True로 설정하여 csv파일 컬럼명을 무시�
 <img width="1084" height="318" alt="image" src="https://github.com/user-attachments/assets/689ebe7a-4d4e-4c2d-91cc-0e5c87bf9ef3" /> </details> <details> <summary>✅ CSV boolean 파싱 오류</summary>
 "True" / "False" 대문자 값이 DB에서 boolean 매핑 실패
 
-→ "1" / "0"으로 변환하여 해결 (사전 전처리 or SQL SET 구문 사용)
+→ 텍스트 파일에서 True 와 False의 대문자열을 일괄적으로 소문자열로 변경경
 
 </details> <details> <summary>✅ JMeter 실행 시간 부족</summary>
 Duration 설정이 짧아 일부 트래픽만 전송됨
@@ -310,7 +310,7 @@ No such file or directory 오류 발생
 
 → 공통 경로 통일 및 .conf 파일 내 주석으로 주의사항 명시
 
-</details> <details open> <summary>✅ Elasticsearch 인덱스 중복 문제</summary>
+</details> <details> <summary>✅ Elasticsearch 인덱스 중복 문제</summary>
 로그 파일 수정 또는 재테스트 후 동일한 로그 파일을 다시 Logstash로 넘기려 했으나
 Elasticsearch에 기존 인덱스가 존재해 새 데이터가 적재되지 않음
 
