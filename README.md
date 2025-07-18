@@ -320,6 +320,44 @@ Filebeat나 Logstash는 한 번 처리한 파일을 내부 상태(sincedb 등)�
 → 동일 경로/내용의 파일은 변경되지 않은 것으로 판단하고 무시함
 
 Elasticsearch 인덱스가 이미 존재하면 문서 ID 중복 또는 파싱 실패로 skip
+
+</details> <details> <summary>✅ Filebeat 로그 파싱 메타 필드만 출력되는 문제</summary>
+로그 수집 및 분석 과정에서 다음과 같은 메타데이터 필드만 나타나고,<br>
+정작 로그 메시지(message)가 보이지 않음. <br>
+<br>
+	
+```
+log.file.path: C:\fisa_project\dummy_data\logs\ianlogin.log  
+agent.name: 1-01  
+agent.version: 7.11.2  
+tags: [ "_grokparsefailure" ]  
+```
+
+> 이 현상은 로그 파싱 실패 시 나타나는 정상적인 현상으로,
+Filebeat는 로그 메시지를 파싱하지 못하더라도 아래와 같은 메타 필드를 자동으로 생성하여 Elasticsearch에 전송.
+<br>
+
+### 📑 Elasticsearch 자동 생성 필드 요약
+| **필드명**              | **설명**                                  |
+| -------------------- | --------------------------------------- |
+| `@timestamp`         | 로그가 수집된 시간 (Filebeat가 수집한 시점 기준)        |
+| `_index`             | 로그가 저장된 인덱스 이름 (예: `ianlogend`)         |
+| `_id`                | Elasticsearch가 부여한 문서 고유 ID             |
+| `_type`              | 문서 타입 (보통 `_doc`)                       |
+| `_score`             | 검색 relevance 점수 (기본 검색 시 `-`)           |
+| `log.file.path`      | 실제 로그 파일의 전체 경로                         |
+| `log.offset`         | 로그 파일 내에서 이 로그가 시작된 바이트 위치              |
+| `agent.name`         | Filebeat가 실행된 호스트 이름                    |
+| `agent.hostname`     | 호스트 이름 (보통 `agent.name`과 동일)            |
+| `agent.type`         | 수집 에이전트 유형 (여기선 `filebeat`)             |
+| `agent.version`      | Filebeat 버전 (예: `7.11.2`)               |
+| `agent.id`           | Filebeat 인스턴스 고유 식별자                    |
+| `agent.ephemeral_id` | 실행 중인 Filebeat 프로세스의 고유 ID (매 실행 시 변경됨) |
+| `input.type`         | 입력 타입 (`log`, `stdin` 등)                |
+| `tags`               | 파싱 상태를 나타내는 태그 (예: `_grokparsefailure`) |
+| `ecs.version`        | Elastic Common Schema 버전 (`1.6.0` 등)    |
+
+
 </details>
 	
 ---
