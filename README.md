@@ -1,5 +1,10 @@
 # ELK-Project
 
+## 📝 소개
+- 이 프로젝트는 Spring Boot—JMeter—Filebeat—Logstash—Elasticsearch—Kibana로 연결되는 통합 데이터 엔지니어링 파이프라인을 구축하여,
+- 로그인 시도(Big Data) 로그를 실시간 수집, 정제, 시각화하는 실전 보안 관제/분석용 시스템입니다.
+- 공격 국가, 시간대, 실패 원인별로 대량 데이터를 분류·추적 가능하며, 운영환경 문제해결 경험까지 담았습니다.
+
 |강한솔|이제현|전수민|황병길|
 |:---:|:---:|:---:|:---:|
 |[kkangsol](https://github.com/kkangsol)|[lyjh98](https://github.com/lyjh98)|[Jsumin07](https://github.com/Jsumin07)|[Gill010147](https://github.com/Gill010147)|
