@@ -4,7 +4,7 @@
 
 <br>
 
-✅ 본 프로젝트는 `Spring Boot`에서 로그를 발생시키고, `JMeter`로 부하 트래픽을 생성한 후, `Filebeat → Logstash → Elasticsearch → Kibana`로 <br> 이어지는 
+✅ 본 프로젝트는 `Spring Boot`에서 로그를 발생시키고, `JMeter`로 부하 트래픽을 생성한 후, `Filebeat → Logstash → Elasticsearch → Kibana`로 이어지는 
 **엔드-투-엔드 로그 파이프라인**을 구현한 실습형 프로젝트입니다. 
 <br> <br>
 ✅ JSON 기반 로그를 수집하여 **국가별, 시간대별 공격 추이 분석**까지 직접 시각화하며, 운영환경 트러블슈팅 경험도 함께 설계했습니다.
