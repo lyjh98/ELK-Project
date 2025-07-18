@@ -1,6 +1,6 @@
 # ELK-Project
 
-|강한솔|이제현|전수민|황병|
+|강한솔|이제현|전수민|황병길|
 |:---:|:---:|:---:|:---:|
 |[kkangsol](https://github.com/kkangsol)|[lyjh98](https://github.com/lyjh98)|[Jsumin07](https://github.com/Jsumin07)|[Gill010147](https://github.com/Gill010147)|
 |<img width="200" height="250" alt="Image" src="" />|<img width="200" height="250" alt="Image" src="" />|<img width="200" height="250" alt="Image" src="" />|<img width="200" height="250" alt="Image" src="" />|
