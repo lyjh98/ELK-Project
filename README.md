@@ -41,6 +41,30 @@
 
 ---
 
+## 🛠️ 기술 스택
+![Filebeat](https://img.shields.io/badge/Filebeat-005571?style=flat&logo=elastic&logoColor=white)
+![Logstash](https://img.shields.io/badge/Logstash-005571?style=flat&logo=elastic&logoColor=white)
+![Elasticsearch](https://img.shields.io/badge/Elasticsearch-005571?style=flat&logo=elasticsearch&logoColor=white)
+![Kibana](https://img.shields.io/badge/Kibana-005571?style=flat&logo=kibana&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=flat&logo=springboot&logoColor=white)
+![JMeter](https://img.shields.io/badge/JMeter-D22128?style=flat&logo=apachejmeter&logoColor=white)
+![Eclipse](https://img.shields.io/badge/Eclipse-2C2255?style=flat&logo=eclipseide&logoColor=white)
+![ChatGPT](https://img.shields.io/badge/ChatGPT-41B06E?style=flat&logo=openai&logoColor=white)
+![Lombok](https://img.shields.io/badge/Lombok-ED6C30?style=flat&logo=lombok&logoColor=white)
+
+
+## 📋 주요 기술 및 버전
+| 목적 | 기능 | 버전 |
+|---|---|---|
+| 🔍 로그 수집 | Filebeat | 7.11.2 |
+| ⚡ 데이터 가공 | Logstash | 7.11.2 |
+| 💾 저장/검색 | Elasticsearch | 7.11.2 |
+| 📊 시각화 | Kibana | 7.11.2 |
+| 🌐 API/데이터 | Spring Boot | 3.5.3 |
+| 🚀 부하생성 | JMeter | 5.6.3 |
+
+---
+
 ## ⚙️ 프로젝트 내용
 
 ## 📌 Pipe Line
