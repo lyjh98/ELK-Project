@@ -40,30 +40,13 @@
 - ✅ 공격 패턴, 시간대, 국가별 이상 로그 분포 시각화로 인사이트 도출 <br><br>
 
 ---
-## 🛠️ 기술 스택
-![Filebeat](https://img.shields.io/badge/Filebeat-005571?style=flat&logo=elastic&logoColor=white)
-![Logstash](https://img.shields.io/badge/Logstash-005571?style=flat&logo=elastic&logoColor=white)
-![Elasticsearch](https://img.shields.io/badge/Elasticsearch-005571?style=flat&logo=elasticsearch&logoColor=white)
-![Kibana](https://img.shields.io/badge/Kibana-005571?style=flat&logo=kibana&logoColor=white)
-![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=flat&logo=springboot&logoColor=white)
-![JMeter](https://img.shields.io/badge/JMeter-D22128?style=flat&logo=apachejmeter&logoColor=white)
-![Eclipse](https://img.shields.io/badge/Eclipse-2C2255?style=flat&logo=eclipseide&logoColor=white)
-![ChatGPT](https://img.shields.io/badge/ChatGPT-41B06E?style=flat&logo=openai&logoColor=white)
-![Lombok](https://img.shields.io/badge/Lombok-ED6C30?style=flat&logo=lombok&logoColor=white)
 
-
-## 📋 주요 기술 및 버전
-| 목적 | 기능 | 버전 |
-|---|---|---|
-| 🔍 로그 수집 | Filebeat | 7.11.2 |
-| ⚡ 데이터 가공 | Logstash | 7.11.2 |
-| 💾 저장/검색 | Elasticsearch | 7.11.2 |
-| 📊 시각화 | Kibana | 7.11.2 |
-| 🌐 API/데이터 | Spring Boot | 3.5.3 |
-| 🚀 부하생성 | JMeter | 5.6.3 |
-
----
 ## ⚙️ 프로젝트 내용
+
+## 📌 Pipe Line
+
+<img width="1311" height="170" alt="image" src="https://github.com/user-attachments/assets/36cfdb1a-b179-44ed-b4e1-429038885c58" />
+
 
 ### 📌 Spring Boot
 
@@ -139,29 +122,113 @@ public class LoginController {
 			        request.getFailureReason());
 			// HTTP 401(인증 실패/HttpStatus.UNAUTHORIZED) 응답 반환 (로그인실패)
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패");
-			
+
+
 		}
 	}
 	
 }
+
+
+
+<!--logback-spring.xml에서 JSON로그를 사용 가능하게 하는 라이브러리 -->
+<!-- 라이브러리 이름이 logstash인 이유 : logstash에 잘 들어가도록 로그를 JSON형태로 만들어주는 라이브러리 -->
+<!-- Logback에 JSON포맷 출력 기능을 추가해주는 라이브러리-->
+<dependency>
+	<groupId>net.logstash.logback</groupId>
+	<artifactId>logstash-logback-encoder</artifactId>
+	<version>7.4</version>
+</dependency>
+
 ```
 
 </details>
 
+## 📌 JMeter
+  
+- CSV 기반 200,000건의 로그인 시도
 
-<summary><strong>📌 JMeter</strong></summary>
+<img width="1462" height="721" alt="image" src="https://github.com/user-attachments/assets/548f27b6-4308-44cc-8bdf-f87e093d73d0" />
 
-- 다양한 국가, IP, 시간대에 대한 부하 시나리오 설계   <br>
-- CSV 기반 10,000건 이상 로그인 시도 시뮬레이션 <br>
+✅ 스레드 수(사용자):10000
+가상의 사용자 수 (= 동시에 요청 보낼 사용자 수)
+여기선 10,000명의 사용자가 시뮬레이션됨 <br>
 
+✅ 램프업 기간(초):15
+10,000명의 사용자를 15초 동안 나눠서 실행
+→ 10000 ÷ 15 = 약 666명/초 속도로 투입됨
+숫자가 작을수록 부하가 급격히 몰림 <br>
+
+✅ 루프 카운트:20
+각 사용자당 요청을 몇 번 반복할지 설정
+→ 사용자 1명이 20번 요청을 보냄
+총 요청 수 = 사용자 수 × 루프 수 = 10,000 × 20 = 20만
+ <br> <br> <br>
+
+ 
+<img width="1452" height="704" alt="image" src="https://github.com/user-attachments/assets/3f2266e9-ee18-42de-b1b9-c25bb0022309" />
+✅ View Result Tree
+요청별 성공/실패 여부, 응답 코드, 요청/응답 내용을 상세히 확인할 수 있는 디버깅 도구 <br>
+로그인 성공/실패 메시지, 오류 응답, 파라미터 확인 등에 활용
+<br>
+
+</da>
+
+## 📌 Filebeat → Logstash
+
+- Filebeat로 로그 수집   <br>
+
+- Logstash에서 grok, mutate, date 필터 사용해 JSON 로그 파싱  <br>
 
 
 <details>
-<summary><strong>📌 Filebeat → Logstash</strong></summary>
 
-- Filebeat로 로그 수집   <br>
-- Logstash에서 grok, mutate, date 필터 사용해 JSON 로그 파싱  <br>
+<summary><strong> ⌨️코드 </strong></summary>
+
+
+```
+input {
+#   file {
+#     path => "C:/fisa_project/dummy_data/logs/ianlogin.log"   
+#     start_position => "beginning"
+#     sincedb_path => "NUL"      
+#     codec => "json"
+#   }
+  beats{
+    port => 5044
+  }
+}
+filter {
+  grok {
+    match => {
+      "message" => "password=%{DATA:password}, country=%{DATA:country}, timestamp=%{TIMESTAMP_ISO8601:timestamp}, success=%{WORD:success}(?:, failureReason=%{DATA:failureReason})?"
+    }
+  }
+
+  date {
+    match => ["timestamp", "yyyy-MM-dd'T'HH:mm:ss"]
+    target => "@timestamp"
+    timezone => "Asia/Seoul"
+  }
+
+  mutate {
+    remove_field => ["message", "logger_name", "thread_name", "level", "@version", "path", "host", "timestamp"]
+  }
+}
+
+
+output {
+  stdout { codec => rubydebug }  # 콘솔 확인용
+  elasticsearch {
+    hosts => ["http://localhost:9200"]
+    index => "lastianlog"
+  }
+}
+
+
 - `start_position`, `sincedb_path`로 수집 범위 제어 <br>
+```
+
 
 </details>
 
