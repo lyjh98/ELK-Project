@@ -281,11 +281,11 @@ output {
 
 | 시각화 항목                                         | 이미지                           | 설명                             | 
 | ---------------------------------------------- | ----------------------------- | ------------------------------ | 
-| **1. 로그인 성공/실패 비율** <br> *(Donut Chart)*       | <img width="300" height="300" alt="화면 캡처 2025-07-18 085422" src="https://github.com/user-attachments/assets/e675fb97-f3b7-440d-bf6d-574a02ca6924" />| 전체 로그인 시도 중 성공 72.8%, 실패 27.2% | 
-| **2. 국가별 로그인 성공 횟수** <br> *(수평 막대그래프)*         |<img width="300" height="300" alt="화면 캡처 2025-07-18 084330" src="https://github.com/user-attachments/assets/c6769a6a-0b9e-4643-accf-7f585c14babf" />| 국가별 로그인 성공 건수 비교               | 
-| **3. 월별 로그인 시도량 분포** <br> *(스택형 막대그래프)*        | <img width="300" height="300" alt="화면 캡처 2025-07-18 092305" src="https://github.com/user-attachments/assets/efe7a908-fcb8-44f0-bdc8-aaa4c08ac0c1" />| 국가별 로그인 시도를 월 단위로 시각화          | 
-| **4. 비밀번호 일치 여부 + 연도** <br> *(Sunburst Chart)* | <img width="300" height="300" alt="화면 캡처 2025-07-18 093807" src="https://github.com/user-attachments/assets/65167038-15f9-41ae-a59e-73f877f72978" />| 비밀번호 일치/불일치 여부와 연도별 시도 분석      |
-| **5. 국가별 로그인 시도 비율** <br> *(Treemap Chart)*    | <img width="300" height="300" alt="화면 캡처 2025-07-18 100221" src="https://github.com/user-attachments/assets/31f5ae9d-7b17-49d4-b862-97cc7b488887" />| 로그인 시도를 국가별 비율로 면적화            |
+| **1. 로그인 성공/실패 비율**       | <img width="300" height="300" alt="화면 캡처 2025-07-18 085422" src="https://github.com/user-attachments/assets/e675fb97-f3b7-440d-bf6d-574a02ca6924" />| 전체 로그인 시도 중 성공 72.8%, 실패 27.2% | 
+| **2. 국가별 로그인 성공 횟수**         |<img width="300" height="300" alt="화면 캡처 2025-07-18 084330" src="https://github.com/user-attachments/assets/c6769a6a-0b9e-4643-accf-7f585c14babf" />| 국가별 로그인 성공 건수 비교               | 
+| **3. 월별 로그인 시도량 분포**        | <img width="300" height="300" alt="화면 캡처 2025-07-18 092305" src="https://github.com/user-attachments/assets/efe7a908-fcb8-44f0-bdc8-aaa4c08ac0c1" />| 국가별 로그인 시도를 월 단위로 시각화          | 
+| **4. 비밀번호 일치 여부 + 연도** | <img width="300" height="300" alt="화면 캡처 2025-07-18 093807" src="https://github.com/user-attachments/assets/65167038-15f9-41ae-a59e-73f877f72978" />| 비밀번호 일치/불일치 여부와 연도별 시도 분석      |
+| **5. 국가별 로그인 시도 비율**    | <img width="300" height="300" alt="화면 캡처 2025-07-18 100221" src="https://github.com/user-attachments/assets/31f5ae9d-7b17-49d4-b862-97cc7b488887" />| 로그인 시도를 국가별 비율로 면적화            |
 
 ---
 
