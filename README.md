@@ -297,8 +297,7 @@ Duration 설정이 짧아 일부 트래픽만 전송됨
 생성된 로그 라인수 확인 명령어
 
 bash
-복사
-편집
+
 wc -l login.log
 </details> <details> <summary>✅ Logstash 경로 설정 이슈</summary>
 팀원 간 로그 파일 경로가 달라 실행 오류 발생
@@ -364,12 +363,15 @@ Filebeat는 로그 메시지를 파싱하지 못하더라도 아래와 같은 �
 
 ## 📊 Kibana 시각화 내용
 
-| 시각화 항목 | 설명 |
-|------------|------|
-| 📅 시간대별 실패 로그 | 새벽 시간대 집중 공격 여부 분석 |
-| 🌍 국가별 실패 분포 | 특정 국가(중국, 러시아 등) 중심 공격 추정 |
-| ❗ 실패 사유 분석 | 잘못된 비밀번호, 계정 없음, 잠금 계정 등 |
-| 📈 전체 트렌드 | 시간 흐름에 따른 공격 시도 패턴 추이 |
+## 📊 Kibana 시각화 내용
+
+| 시각화 항목                                         | 이미지                           | 설명                             | 
+| ---------------------------------------------- | ----------------------------- | ------------------------------ | 
+| **1. 로그인 성공/실패 비율** <br> *(Donut Chart)*       | <img width="300" height="300" alt="화면 캡처 2025-07-18 085422" src="https://github.com/user-attachments/assets/e675fb97-f3b7-440d-bf6d-574a02ca6924" />| 전체 로그인 시도 중 성공 72.8%, 실패 27.2% | 
+| **2. 국가별 로그인 성공 횟수** <br> *(수평 막대그래프)*         |<img width="300" height="300" alt="화면 캡처 2025-07-18 084330" src="https://github.com/user-attachments/assets/c6769a6a-0b9e-4643-accf-7f585c14babf" />| 국가별 로그인 성공 건수 비교               | 
+| **3. 월별 로그인 시도량 분포** <br> *(스택형 막대그래프)*        | <img width="300" height="300" alt="화면 캡처 2025-07-18 092305" src="https://github.com/user-attachments/assets/efe7a908-fcb8-44f0-bdc8-aaa4c08ac0c1" />| 국가별 로그인 시도를 월 단위로 시각화          | 
+| **4. 비밀번호 일치 여부 + 연도** <br> *(Sunburst Chart)* | <img width="300" height="300" alt="화면 캡처 2025-07-18 093807" src="https://github.com/user-attachments/assets/65167038-15f9-41ae-a59e-73f877f72978" />| 비밀번호 일치/불일치 여부와 연도별 시도 분석      |
+| **5. 국가별 로그인 시도 비율** <br> *(Treemap Chart)*    | <img width="300" height="300" alt="화면 캡처 2025-07-18 100221" src="https://github.com/user-attachments/assets/31f5ae9d-7b17-49d4-b862-97cc7b488887" />| 로그인 시도를 국가별 비율로 면적화            |
 
 ---
 
